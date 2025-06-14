@@ -21,7 +21,7 @@ async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
   fastify.post('/', { schema: productSchema }, productController.createProduct);
   fastify.get('/', productController.getProducts);
   fastify.get('/:id', productController.getProductById);
-  fastify.put('/:id', productController.updateProduct);
+  fastify.put('/:id', { schema: productSchema }, productController.updateProduct);
   fastify.delete('/:id', productController.deleteProduct);
 }
 
