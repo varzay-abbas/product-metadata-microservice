@@ -8,11 +8,23 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  tags        String
+  id          String    @id @default(uuid())
+  name        String    
+  description String    
   price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  tags        String    // Store as JSON string instead of String[]
+  category    String?   
+  brand       String?   
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  action     String   
+  entityType String   
+  entityId   String
+  changes    Json
+  createdAt  DateTime @default(now())
 }

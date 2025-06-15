@@ -3,6 +3,8 @@
 
 A TypeScript-based Fastify microservice that provides full CRUD support for managing product metadata
 
+![Architectural Design](./System-Design.jpg)
+
 ---
 
 ## ✅ Features
@@ -33,7 +35,7 @@ A TypeScript-based Fastify microservice that provides full CRUD support for mana
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:varzay-abbas/product-metadata-microservice.git
 cd task1-product-service
 npm install
 ```
@@ -80,41 +82,6 @@ npm run test
 
 > Tests are located in `/test/product.test.ts`  
 > Uses `supertest` to simulate HTTP requests.
-
----
-
-## 🧪 Sample Jest Test (test/product.test.ts)
-
-```ts
-const appInstance = require('../src/app');
-const supertest = require('supertest');
-
-let server: any;
-
-beforeAll(async () => {
-  await appInstance.ready();
-  server = appInstance.server;
-});
-
-const request = supertest(server);
-
-describe('Product API', () => {
-  it('should return 200 for GET /products', async () => {
-    const response = await request.get('/products');
-    expect(response.status).toBe(200);
-  });
-
-  it('should create a product with POST /products', async () => {
-    const response = await request.post('/products').send({
-      name: 'Test Product',
-      description: 'Test description',
-      tags: ['tag1'],
-      price: 100
-    });
-    expect(response.status).toBe(201);
-  });
-});
-```
 
 ---
 
